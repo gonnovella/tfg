@@ -8,7 +8,7 @@ body {
   /* Estilo personalizado para el header */
   header {
     background: url('https://i.pinimg.com/originals/f1/8e/e6/f18ee68916d0a279798808eb7456249d.jpg') no-repeat center center/cover;
-    color: white;
+    color: green;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
   }
   
@@ -20,4 +20,5 @@ body {
   .card:hover {
     transform: scale(1.03);
   }
+  
   
