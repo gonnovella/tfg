@@ -1,0 +1,3 @@
+
+hacer la parte de estadisticas, pedidos en el admin para que se pueda gestionar todo desde la web y no tocar la base de datos
+conectar la parte de productos con firebase

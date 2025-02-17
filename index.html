@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tienda Online - Inicio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Archivo CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar con enlace para iniciar sesión (admin) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tienda Online</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavIndex"
+              aria-controls="navbarNavIndex" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavIndex">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html"> 🛒 <span id="carritoBadge" class="badge bg-danger"></span></a></li>
+          <!-- Enlace de admin -->
+          <li class="nav-item">
+            <a class="nav-link" href="admin-login.html">Iniciar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Resto del contenido de la página (por ejemplo, header y sección de productos) -->
+  <header class="bg-light py-5" id="home-header">
+    <div class="container text-center">
+      <h1 class="display-4">Bienvenido a la Tienda Online</h1>
+      <p class="lead">Descubre nuestros productos de calidad y disfruta de una experiencia de compra única</p>
+      <a href="productos.html" class="btn btn-primary btn-lg mt-3">Ver Productos</a>
+    </div>
+  </header>
+
+  <!-- Sección Destacada de Productos -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Productos Destacados</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Producto 1 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 1">
+            <div class="card-body">
+              <h5 class="card-title">Producto 1</h5>
+              <p class="card-text">Una breve descripción del producto 1.</p>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">$10.00</span>
+              <button onclick="agregarAlCarrito(1, 'Producto 1', 10.00)" class="btn btn-primary btn-sm float-end">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Producto 2 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 2">
+            <div class="card-body">
+              <h5 class="card-title">Producto 2</h5>
+              <p class="card-text">Una breve descripción del producto 2.</p>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">$15.00</span>
+              <button onclick="agregarAlCarrito(2, 'Producto 2', 15.00)" class="btn btn-primary btn-sm float-end">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Producto 3 -->
+        <div class="col">
+          <div class="card h-100">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 3">
+            <div class="card-body">
+              <h5 class="card-title">Producto 3</h5>
+              <p class="card-text">Una breve descripción del producto 3.</p>
+            </div>
+            <div class="card-footer">
+              <span class="text-muted">$20.00</span>
+              <button onclick="agregarAlCarrito(3, 'Producto 3', 20.00)" class="btn btn-primary btn-sm float-end">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Enlace a la página de productos para ver más -->
+      <div class="text-center mt-4">
+        <a href="productos.html" class="btn btn-outline-secondary">Ver Todos los Productos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script para agregar producto al carrito -->
+  <script>
+    function agregarAlCarrito(id, nombre, precio) {
+      // Obtener el carrito actual o inicializarlo como array vacío
+      let carrito = localStorage.getItem('carrito');
+      carrito = carrito ? JSON.parse(carrito) : [];
+      
+      // Verificar si el producto ya existe
+      let productoExistente = carrito.find(p => p.id === id);
+      if (productoExistente) {
+        productoExistente.cantidad++;
+        productoExistente.total = productoExistente.cantidad * precio;
+      } else {
+        carrito.push({ id, nombre, precio, cantidad: 1, total: precio });
+      }
+      
+      // Guardar el carrito actualizado
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      // Mostrar mensaje de confirmación (podrías usar una notificación o modal)
+      alert(nombre + " ha sido añadido al carrito.");
+    }
+  </script>
+
+  <!-- Bootstrap JS (incluye Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Firebase Libraries -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+
+<!-- Configuración de Firebase -->
+<script src="firebase-config.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - Iniciar sesión</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Archivo CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar (con enlace a Inicio y otras páginas, si se desea) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tienda Online</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAdmin"
+              aria-controls="navbarNavAdmin" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAdmin">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sección de Login -->
+  <section class="py-5">
+    <div class="container">
+      <h1 class="mb-4 text-center">Admin - Iniciar sesión</h1>
+      <form id="loginForm" class="mx-auto" style="max-width: 400px;">
+        <div class="mb-3">
+          <label for="adminUser" class="form-label">Usuario</label>
+          <input type="text" class="form-control" id="adminUser" placeholder="Usuario" required>
+        </div>
+        <div class="mb-3">
+          <label for="adminPass" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="adminPass" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+      </form>
+      <div id="loginMensaje" class="mt-4 text-center"></div>
+    </div>
+  </section>
+
+  <!-- Script para validar el login -->
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById('adminUser').value.trim();
+      const contrasena = document.getElementById('adminPass').value.trim();
+      const mensaje = document.getElementById('loginMensaje');
+
+      // Validación simple: usuario y contraseña deben ser 'admin'
+      if (usuario === 'admin' && contrasena === 'admin') {
+        mensaje.innerHTML = '<div class="alert alert-success">Inicio de sesión exitoso. Redirigiendo...</div>';
+        // Redirigir al Dashboard de admin tras 1 segundo
+        setTimeout(() => {
+          window.location.href = 'admin-dashboard.html';
+        }, 1000);
+      } else {
+        mensaje.innerHTML = '<div class="alert alert-danger">Credenciales incorrectas. Inténtalo de nuevo.</div>';
+      }
+    });
+  </script>
+
+  <!-- Bootstrap JS (incluye Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
